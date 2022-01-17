@@ -108,6 +108,7 @@ extension RNCardVerify: VerifyCardResult {
                 "canceledReason": "user_canceled"
             ])
         }
+        resolve = nil
     }
 
     func fraudModelResultsVerifyCard(viewController: VerifyCardViewController, creditCard: CreditCard, encryptedPayload: String?, extraData: [String : Any]) {
@@ -137,6 +138,7 @@ extension RNCardVerify: VerifyCardResult {
       if let resolve = self.resolve {
         resolve(resolvePayload)
       }
+      resolve = nil
     }
 }
 
@@ -153,6 +155,7 @@ extension RNCardVerify: VerifyCardAddResult {
                 "canceledReason": "user_canceled"
             ])
         }
+        resolve = nil
     }
 
     func userDidScanCardAdd(_ viewController: UIViewController, creditCard: CreditCard) {
@@ -166,6 +169,8 @@ extension RNCardVerify: VerifyCardAddResult {
         if let resolve = resolve {
             resolve(["action": "skipped"])
         }
+        
+        resolve = nil
     }
     
     func fraudModelResultsVerifyCardAdd(viewController: UIViewController, creditCard: CreditCard, encryptedPayload: String?, extraData: [String: Any]) {
@@ -195,5 +200,6 @@ extension RNCardVerify: VerifyCardAddResult {
         if let resolve = self.resolve {
             resolve(resolvePayload)
         }
+        resolve = nil
     }
 }
